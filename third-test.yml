@@ -1,0 +1,9 @@
+config:
+  target: "https://web01-94243008.herokuapp.com"
+  phases:
+    - duration: 30
+      arrivalRate: 20
+scenarios:
+  - flow:
+      - get:
+          url: "/gis/testpoint/52.20703125/34.41144164327245"

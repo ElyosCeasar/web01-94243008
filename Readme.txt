@@ -253,4 +253,118 @@ Summary report @ 18:50:42(+0330) 2019-10-24
     ECONNRESET: 3
 
 In this test we test other get api that is mentiond in homework with 200 user who requstes 100 times.you can see results
-in each times.
+in each times(it is printed to the terminal every 10 seconds).
+for interpreting the result we can use docs that mentioned:
+Scenarios :  launched is the number of virtual users created in the preceding 10 seconds (or in total)
+Scenarios :  completed is the number of virtual users that completed their scenarios in the preceding 10 seconds (or in the whole test). Note: this is the number of completed sessions, not the number of sessions started and completed in a 10 second interval.
+Requests  :  completed is the number of HTTP requests and responses or WebSocket messages sent
+RPS       :  sent is the average number of requests per second completed in the preceding 10 seconds (or throughout the test)
+Request   :  latency is in milliseconds, and p95 and p99 values are the 95th and 99th percentile values (a request latency p99 value of 500ms means that 99 out of 100 requests took 500ms or less to complete).
+Codes     :  provides the breakdown of HTTP response codes received.
+If you see NaN ("not a number") reported as a value, that means not enough responses have been received to calculate the percentile.
+
+If there are any errors (such as socket timeouts), those will be printed under Errors in the report as well.
+
+script tests:
+1- I want to repeat my second quick test in script format with other paramiters(see third-test.yml):
+it is runnig with this command "artillery run third-test.yml"
+res:
+Started phase 0, duration: 30s @ 19:21:40(+0330) 2019-10-24
+Report @ 19:21:50(+0330) 2019-10-24
+Elapsed time: 10 seconds
+  Scenarios launched:  199
+  Scenarios completed: 184
+  Requests completed:  184
+  RPS sent: 20.22
+  Request latency:
+    min: 736
+    max: 953.1
+    median: 757.5
+    p95: 914.3
+    p99: 932.6
+  Codes:
+    200: 184
+
+Report @ 19:22:00(+0330) 2019-10-24
+Elapsed time: 20 seconds
+  Scenarios launched:  200
+  Scenarios completed: 199
+  Requests completed:  199
+  RPS sent: 20.06
+  Request latency:
+    min: 731.9
+    max: 930.6
+    median: 757.3
+    p95: 898.1
+    p99: 922.4
+  Codes:
+    200: 199
+
+Report @ 19:22:10(+0330) 2019-10-24
+Elapsed time: 30 seconds
+  Scenarios launched:  200
+  Scenarios completed: 200
+  Requests completed:  200
+  RPS sent: 20.2
+  Request latency:
+    min: 744.4
+    max: 958.2
+    median: 774.4
+    p95: 923.5
+    p99: 956.1
+  Codes:
+    200: 200
+
+Report @ 19:22:11(+0330) 2019-10-24
+Elapsed time: 31 seconds
+  Scenarios launched:  1
+  Scenarios completed: 17
+  Requests completed:  17
+  RPS sent: 1
+  Request latency:
+    min: 765.5
+    max: 976.2
+    median: 814.7
+    p95: 934.7
+    p99: 976.2
+  Codes:
+    200: 17
+
+All virtual users finished
+Summary report @ 19:22:11(+0330) 2019-10-24
+  Scenarios launched:  600
+  Scenarios completed: 600
+  Requests completed:  600
+  RPS sent: 19.4
+  Request latency:
+    min: 731.9
+    max: 976.2
+    median: 763.8
+    p95: 913.9
+    p99: 935.3
+  Scenario counts:
+    0: 600 (100%)
+  Codes:
+    200: 600
+
+In this test we set test duration 30 sec and our arrivalRate is 20.our 600 tests is complited
+successfully with this paramiters.
+----------------------------------------------------------------------------------------------------------------------
+Basic about our package that we used:
+as you can see on package.json we used:
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "point-in-polygon": "^1.0.1",
+express for writing apis.
+body-parser for parsing body in put api
+point-in-polygon that help us finding if a point is in an area or not
+
+also we use (with global installation):
+artillery
+nodemon
+heroku
+
+-----------------------------------------------------------------------------------------------------------------------
+considration:
+we supposed that input arguments are correct and their format is exactly like what homework says (because it dosen't mention
+input checking )
